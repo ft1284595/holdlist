@@ -4,14 +4,24 @@ import numpy as np
 
 
 def main():
-    df = pd.read_excel("./933.xlsx", dtype=str)
+    df = pd.read_excel("./369.xlsx", dtype=str)
     df.head()
 
     pt = pd.pivot_table(df, index=["MAWB","Container No.","HAWB"], values=["CBP Status"], aggfunc=["count"], margins=True)
     
 
     print(pt)
-    pt.to_excel("../933-pivot.xlsx")
+    print(type(pt))
+    
+    column_withs = (pt.columns.to_series().apply(lambda x : len(x.encode('utf-8'))).values)
+
+    max_widths = (df.astype(str).applymap(lambda x : len(x.encode('utf-8'))).agg(max).values)
+
+    #https://cloud.tencent.com/developer/article/1770494
+
+
+
+    pt.to_excel("../369-pivot.xlsx")
     """
     with pd.ExcelWriter("933.xlsx") as writer:
         pt.to_excel("../933-pivot.xlsx", sheet_name="zx-pivot-table")
