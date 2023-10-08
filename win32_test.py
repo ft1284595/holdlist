@@ -4,6 +4,8 @@ import win32print
 
 '''
 http://timgolden.me.uk/python/win32_how_do_i/print.html
+
+测试成功
 '''
 
 filename = tempfile.mktemp (".txt")

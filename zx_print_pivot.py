@@ -25,7 +25,7 @@ def main():
     for filename in listFiles('.'):
 
         #默认打印1份
-        Copies = 1
+        copy_num = 1
         #app = xw.App(visible=True, add_book=False)
         app = xw.App(visible=False, add_book=False)
         workbook = app.books.open(filename)
@@ -33,13 +33,14 @@ def main():
         #print('last_cell row=',worksheet.used_range.last_cell.row)
         #数据透视表的头部和尾部统计,一共有4行
         if worksheet.used_range.last_cell.row > 14:     #如果表格的数据(具体要找的包裹数量)超过10行,打印2份
-            Copies = 2
-        elif worksheet.used_range.last_cell.row > 24:   #如果表格的数据超(具体要找的包裹数量)过10行,打印3份
-            Copies = 3
+            copy_num = 2
+        if worksheet.used_range.last_cell.row > 24:     #如果表格的数据超(具体要找的包裹数量)过20行,打印3份
+            copy_num = 3
         
+
         #在左边的页眉打印当前日期
         worksheet.api.PageSetup.LeftHeader = datetime.datetime.now().strftime("%Y-%m-%d")
-        worksheet.api.PrintOut(Copies=1, ActivePrinter="Brother MFC-L2717DW Printer (Copy 1)",Collate=True)
+        worksheet.api.PrintOut(Copies=copy_num, ActivePrinter="Brother MFC-L2717DW Printer (Copy 1)",Collate=True)
 
         app.quit()
 

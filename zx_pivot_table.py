@@ -24,8 +24,8 @@ def listFiles(path):
 
 def main():
     #for filename in ["933.xlsx","369.xlsx"]:
-    for filename in ["369.xlsx"]:
-    #for filename in listFiles('.'):
+    #for filename in ["369.xlsx"]:
+    for filename in listFiles('.'):
         df = pd.read_excel(filename, dtype=str, engine='openpyxl')
         df.head()
 
