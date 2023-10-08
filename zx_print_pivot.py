@@ -40,6 +40,8 @@ def main():
 
         #在左边的页眉打印当前日期
         worksheet.api.PageSetup.LeftHeader = datetime.datetime.now().strftime("%Y-%m-%d")
+        #worksheet.api.PageSetup.CenterHeader
+        worksheet.api.PageSetup.RightFooter = datetime.datetime.now().strftime("%Y-%m-%d")
         worksheet.api.PrintOut(Copies=copy_num, ActivePrinter="Brother MFC-L2717DW Printer (Copy 1)",Collate=True)
 
         app.quit()
